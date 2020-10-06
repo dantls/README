@@ -1,8 +1,8 @@
-# Proffy | Next Level Week 2
+# Treina | Web 2
 
 
 ## 📚 Descrição ##
-O projeto trata-se uma plataforma de estudos online, que tem como objetivo conectar professores e alunos. [**Layout Proffy**](https://www.figma.com/file/GHGS126t7WYjnPZdRKChJF/Proffy-Web?node-id=0%3A1)
+O projeto trata-se uma plataforma que tem como objetivo conectar educadores físicos e alunos. 
 
 **🔗 Tecnologias utilizadas:**
 - [NodeJS](https://nodejs.org/en/)
