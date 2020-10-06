@@ -1,4 +1,4 @@
-# Treina | WEB 2
+# Treina | Web 2
 
 
 ## 📚 Descrição ##
