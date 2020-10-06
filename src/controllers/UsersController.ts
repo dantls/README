@@ -41,13 +41,44 @@ class UserController {
   async delete(request: Request, response: Response) {
     const userRepository = getCustomRepository(UserRepository);
 
-    // response.json(await userRepository.find());
+    const { id } = request.params;
+
+    const userFound = await userRepository.findOne(id);
+
+    if (!userFound) {
+      return response.status(400).json({ error: 'Repository does not exist' });
+    }
+    await userRepository.delete(userFound);
+
+    return response.status(204).send();
   }
 
   async update(request: Request, response: Response) {
     const userRepository = getCustomRepository(UserRepository);
 
-    // response.json(await userRepository.find());
+    const { id } = request.params;
+    const {
+      name,
+      whatsapp,
+      bio,
+      avatar,
+    } = request.body;
+
+    const userFound = await userRepository.findOne(id);
+
+    if (!userFound) {
+      return response.status(400).json({ error: 'Repository does not exists.' });
+    }
+
+    userRepository.merge(userFound, {
+      id,
+      name,
+      whatsapp,
+      bio,
+      avatar,
+    });
+
+    return response.json();
   }
 }
 
