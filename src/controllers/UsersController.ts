@@ -43,12 +43,14 @@ class UserController {
 
     const { id } = request.params;
 
+    console.log(id);
+
     const userFound = await userRepository.findOne(id);
 
     if (!userFound) {
       return response.status(400).json({ error: 'Repository does not exist' });
     }
-    await userRepository.delete(userFound);
+    await userRepository.remove(userFound);
 
     return response.status(204).send();
   }
@@ -70,13 +72,14 @@ class UserController {
       return response.status(400).json({ error: 'Repository does not exists.' });
     }
 
-    userRepository.merge(userFound, {
-      id,
+    const userAltered = {
+      ...userFound,
       name,
       whatsapp,
       bio,
       avatar,
-    });
+    };
+    userRepository.save(userAltered);
 
     return response.json();
   }

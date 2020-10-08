@@ -1,4 +1,4 @@
-import { getCustomRepository, LessThanOrEqual } from 'typeorm';
+import { getCustomRepository } from 'typeorm';
 import { Request, Response } from 'express';
 
 import ClasseRepository from '../repositories/ClasseRepository';
