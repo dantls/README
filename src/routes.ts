@@ -1,11 +1,26 @@
 import { Router } from 'express';
+import { celebrate, Joi } from 'celebrate';
+import multer from 'multer';
 import UsersController from './controllers/UsersController';
 import ClassesController from './controllers/ClassesController';
 import ConnectionsController from './controllers/ConnectionsController';
 
+import multerConfig from './config/multer';
+
 const router = Router();
 
-router.post('/users', UsersController.create);
+const upload = multer(multerConfig);
+
+router.post('/users', upload.single('image'),
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().required(),
+      bio: Joi.string().required(),
+      whatsapp: Joi.number().required(),
+    }),
+  }, {
+    abortEarly: false,
+  }), UsersController.create);
 router.get('/users', UsersController.index);
 router.put('/users/:id', UsersController.update);
 router.delete('/users/:id', UsersController.delete);

@@ -11,7 +11,6 @@ class UserController {
       name,
       whatsapp,
       bio,
-      avatar,
     } = request.body;
 
     const existUser = await userRepository.findOne({ name });
@@ -24,7 +23,7 @@ class UserController {
       name,
       whatsapp,
       bio,
-      avatar,
+      avatar: request.file.filename,
     });
 
     await userRepository.save(user);
@@ -42,8 +41,6 @@ class UserController {
     const userRepository = getCustomRepository(UserRepository);
 
     const { id } = request.params;
-
-    console.log(id);
 
     const userFound = await userRepository.findOne(id);
 
