@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 import multer from 'multer';
+import multerConfig from './config/multer';
+
 import UsersController from './controllers/UsersController';
 import ClassesController from './controllers/ClassesController';
 import ConnectionsController from './controllers/ConnectionsController';
-
-import multerConfig from './config/multer';
 
 const router = Router();
 
@@ -16,7 +16,7 @@ router.post('/users', upload.single('image'),
     body: Joi.object().keys({
       name: Joi.string().required(),
       bio: Joi.string().required(),
-      whatsapp: Joi.number().required(),
+      whatsapp: Joi.string().required(),
     }),
   }, {
     abortEarly: false,

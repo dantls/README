@@ -56,7 +56,7 @@ class ClasseController {
 
     const timeInMinutes = convertHourToMinutes(time);
 
-    const classe = await classeRepository
+    const classes = await classeRepository
       .createQueryBuilder('classes')
       // .select([
       //   'classes.id',
@@ -73,7 +73,12 @@ class ClasseController {
       // .getSql();
       // .printSql()
 
-    return response.json(classe);
+    const serializedClasses = classes.map((classe) => ({
+      ...classe,
+      image: `http://localhost:3333/uploads/${classe.user.avatar}`,
+    }));
+
+    return response.json(serializedClasses);
   }
 }
 
